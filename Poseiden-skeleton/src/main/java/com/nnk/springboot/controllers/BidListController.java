@@ -37,20 +37,20 @@ public class BidListController {
     @PostMapping("/bidList/validate")
     public String validate(@Valid BidList bid, BindingResult result, Model model) {
     	if (bid.getAccount().isBlank()) {
-    		result.rejectValue("account", null, "Please field the account");
+    		result.rejectValue("account", null, "Account is mandatory");
 		}
     	if (bid.getType().isBlank()) {
-    		result.rejectValue("type", null, "Please field the type");
+    		result.rejectValue("type", null, "Type is mandatory");
 		}
     	if (bid.getBidQuantity()== null) {
-    		result.rejectValue("bidQuantity", null, "Please field the bid quantity");
+    		result.rejectValue("bidQuantity", null, "The bid quantity is mandatory");
 		}
     	if (result.hasErrors()) {
             return "bidList/add";
 		}
     	
     	bidListRepository.save(bid);
-        return "redirect:list";
+        return "redirect:/bidList/list";
     }
 
     @GetMapping("/bidList/update/{id}")

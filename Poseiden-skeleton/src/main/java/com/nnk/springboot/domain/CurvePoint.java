@@ -3,6 +3,7 @@ package com.nnk.springboot.domain;
 import java.sql.Timestamp;
 
 import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import javax.persistence.Table;
 
@@ -11,6 +12,7 @@ import javax.persistence.Table;
 @Table(name = "curvepoint")
 public class CurvePoint {
 	@Id
+	@GeneratedValue
 	private Integer id;
 	private Integer curveId;
 	private Timestamp asOfDate;
