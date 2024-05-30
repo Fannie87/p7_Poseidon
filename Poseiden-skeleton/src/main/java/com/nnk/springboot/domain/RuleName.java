@@ -1,6 +1,7 @@
 package com.nnk.springboot.domain;
 
 import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import javax.persistence.Table;
 
@@ -8,6 +9,7 @@ import javax.persistence.Table;
 @Table(name = "rulename")
 public class RuleName {
 	@Id
+	@GeneratedValue
 	private Integer id;
 	private String name;
 	private String description;
@@ -17,6 +19,7 @@ public class RuleName {
 	private String sqlPart;
 	
 	
+
 	public Integer getId() {
 		return id;
 	}

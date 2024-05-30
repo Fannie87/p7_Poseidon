@@ -3,6 +3,7 @@ package com.nnk.springboot.domain;
 import java.sql.Timestamp;
 
 import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import javax.persistence.Table;
 
@@ -11,6 +12,7 @@ import javax.persistence.Table;
 @Table(name = "trade")
 public class Trade {
 	@Id
+	@GeneratedValue
 	private Integer tradeId;
 	private String account;
 	private String type;

@@ -74,7 +74,7 @@ public class CurveController {
     		result.rejectValue("value", null, "Value is mandatory");
 		}
     	if (result.hasErrors()) {
-            return "curvePoint/add";
+            return "curvePoint/update";
 		}
     	
     	curvePointRepository.save(curvePoint);

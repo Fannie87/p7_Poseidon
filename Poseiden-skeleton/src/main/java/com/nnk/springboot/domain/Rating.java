@@ -1,6 +1,7 @@
 package com.nnk.springboot.domain;
 
 import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import javax.persistence.Table;
 
@@ -8,6 +9,7 @@ import javax.persistence.Table;
 @Table(name = "rating")
 public class Rating {
 	@Id
+	@GeneratedValue
 	private Integer id;
 	private String moodysRating;
 	private String sandPRating;
