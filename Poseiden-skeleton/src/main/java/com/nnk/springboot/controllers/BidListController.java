@@ -33,6 +33,7 @@ public class BidListController {
     public String addBidForm(BidList bid) {
         return "bidList/add";
     }
+    
 
     @PostMapping("/bidList/validate")
     public String validate(@Valid BidList bid, BindingResult result, Model model) {

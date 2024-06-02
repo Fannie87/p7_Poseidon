@@ -17,6 +17,10 @@ import com.nnk.springboot.services.MyAppUserDetailsService;
 public class SecurityConfig extends WebSecurityConfigurerAdapter {
     @Autowired
     private MyAppUserDetailsService myAppUserDetailsService;
+    
+    /**
+     * Cette méthode permet de gérer les connexions et authentifications des utilisateurs, grâce à des identifiants et des mots de passe hachés.
+     */
     @Override
     protected void configure(HttpSecurity http) throws Exception {
         http.authorizeRequests()

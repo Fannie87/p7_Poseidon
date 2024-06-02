@@ -40,7 +40,7 @@ public class RuleNameController {
     public String validate(@Valid RuleName ruleName, BindingResult result, Model model) {
 
     	if (ruleName.getName().isBlank()) {
-    		result.rejectValue("name", null, "Name is mandatory");
+			result.rejectValue("name", null, "Name is mandatory");
 		}
     	if (ruleName.getDescription().isBlank()) {
     		result.rejectValue("description", null, "Description is mandatory");
