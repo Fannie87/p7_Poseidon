@@ -1,7 +1,5 @@
 package com.nnk.springboot.controllers;
 
-import java.util.List;
-
 import javax.validation.Valid;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -14,79 +12,42 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 import com.nnk.springboot.domain.Trade;
-import com.nnk.springboot.repositories.TradeRepository;
+import com.nnk.springboot.services.TradeService;
 
 @Controller
 public class TradeController {
 
 	@Autowired
-	public TradeRepository tradeRepository;
-	
-    @RequestMapping("/trade/list")
-    public String home(Model model)
-    {
-    	List<Trade> trade = tradeRepository.findAll();
-    	model.addAttribute("trades", trade);
-    	return "trade/list";
-    }
+	public TradeService tradeService;
 
-    @GetMapping("/trade/add")
-    public String addUser(Trade bid) {
-        return "trade/add";
-    }
+	@RequestMapping("/trade/list")
+	public String home(Model model) {
+		return tradeService.home(model);
+	}
 
-    @PostMapping("/trade/validate")
-    public String validate(@Valid Trade trade, BindingResult result, Model model) {
+	@GetMapping("/trade/add")
+	public String addUser(Trade bid) {
+		return "trade/add";
+	}
 
-    	if (trade.getAccount().isBlank()) {
-    		result.rejectValue("account", null, "Account is mandatory");
-		}
-    	if (trade.getType().isBlank()) {
-    		result.rejectValue("type", null, "Type is mandatory");
-		}
-    	if (trade.getBuyQuantity()== null) {
-    		result.rejectValue("buyQuantity", null, "The quantity bought is mandatory");
-		}
-    	if (result.hasErrors()) {
-            return "trade/add";
-		}
-    	tradeRepository.save(trade);
-    	return "redirect:/trade/list";
-    }
-    
+	@PostMapping("/trade/validate")
+	public String validate(@Valid Trade trade, BindingResult result, Model model) {
 
-    @GetMapping("/trade/update/{id}")
-    public String showUpdateForm(@PathVariable("id") Integer id, Model model) {
-    	Trade trade = tradeRepository.getOne(id);
-    	model.addAttribute("trade", trade);
-    	return "trade/update";
-    }
+		return tradeService.validate(trade, result, model);
+	}
 
-    @PostMapping("/trade/update/{id}")
-    public String updateTrade(@PathVariable("id") Integer id, @Valid Trade trade,
-                             BindingResult result, Model model) {
-    	if (trade.getTradeId()==null) {
-    		result.rejectValue("tradeId", null, "Must not be null");
-    	}
-    	if (trade.getAccount().isBlank()) {
-    		result.rejectValue("account", null, "Account is mandatory");
-		}
-    	if (trade.getType().isBlank()) {
-    		result.rejectValue("type", null, "Type is mandatory");
-		}
-    	if (trade.getBuyQuantity()== null) {
-    		result.rejectValue("buyQuantity", null, "The quantity bought is mandatory");
-		}
-    	if (result.hasErrors()) {
-            return "trade/update";
-		}
-    	tradeRepository.save(trade);
-    	return "redirect:/trade/list";
-    }
+	@GetMapping("/trade/update/{id}")
+	public String showUpdateForm(@PathVariable("id") Integer id, Model model) {
+		return tradeService.showUpdateForm(id, model);
+	}
 
-    @GetMapping("/trade/delete/{id}")
-    public String deleteTrade(@PathVariable("id") Integer id, Model model) {
-    	tradeRepository.deleteById(id);
-    	return "redirect:/trade/list";
-    }
+	@PostMapping("/trade/update/{id}")
+	public String updateTrade(@PathVariable("id") Integer id, @Valid Trade trade, BindingResult result, Model model) {
+		return tradeService.updateTrade(id, trade, result, model);
+	}
+
+	@GetMapping("/trade/delete/{id}")
+	public String deleteTrade(@PathVariable("id") Integer id, Model model) {
+		return tradeService.deleteTrade(id, model);
+	}
 }

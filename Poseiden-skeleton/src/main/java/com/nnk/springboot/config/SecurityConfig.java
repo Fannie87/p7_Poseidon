@@ -32,7 +32,7 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
                 .defaultSuccessUrl("/bidList/list")
                 .and().logout()    //logout configuration
                 .logoutUrl("/app-logout")
-                .logoutSuccessUrl("/")
+                .logoutSuccessUrl("/login")
                 .and()
                 .rememberMe()
                 .key("123456")
