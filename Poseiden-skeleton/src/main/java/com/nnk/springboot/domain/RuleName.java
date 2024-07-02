@@ -3,19 +3,30 @@ package com.nnk.springboot.domain;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
-import javax.persistence.Table;
+import javax.validation.constraints.NotNull;
 
 @Entity
-@Table(name = "rulename")
 public class RuleName {
 	@Id
 	@GeneratedValue
 	private Integer id;
+	
+	@NotNull
 	private String name;
+	
+	@NotNull
 	private String description;
+	
+	@NotNull
 	private String json;
+	
+	@NotNull
 	private String template;
+	
+	@NotNull
 	private String sqlStr;
+	
+	@NotNull
 	private String sqlPart;
 
 	public RuleName() {

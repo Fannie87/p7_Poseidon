@@ -47,7 +47,7 @@ public class TradeService {
     
 
     public String showUpdateForm(@PathVariable("id") Integer id, Model model) {
-    	Trade trade = tradeRepository.getOne(id);
+    	Trade trade = tradeRepository.getReferenceById(id);
     	model.addAttribute("trade", trade);
     	return "trade/update";
     }

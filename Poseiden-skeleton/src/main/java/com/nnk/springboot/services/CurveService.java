@@ -45,7 +45,7 @@ public class CurveService {
 	}
 
 	public String showUpdateForm(@PathVariable("id") Integer id, Model model) {
-		CurvePoint curvePoint = curvePointRepository.getOne(id);
+		CurvePoint curvePoint = curvePointRepository.getReferenceById(id);
 		model.addAttribute("curvePoint", curvePoint);
 		return "curvePoint/update";
 	}

@@ -1,5 +1,8 @@
 package com.nnk.springboot.services;
 
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
+
 import javax.validation.Valid;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -24,6 +27,21 @@ public class UserService {
 
 	public String validate(@Valid User user, BindingResult result, Model model) {
 		if (!result.hasErrors()) {
+			
+			// au moins une lettre majuscule, au moins 8 caractères, au moins un chiffre et un symbole)
+			String regex = "^(?=.*[a-z])(?=.*[A-Z])(?=.*\\d)(?=.*[@#$%^&+=]).{8,}$";
+			Pattern pattern = Pattern.compile(regex);
+			Matcher matcher = pattern.matcher(user.getPassword());
+			
+			if (!matcher.matches()) {
+				result.rejectValue("password", null, "Must have at least: "
+						+ " 1 capital letter,"
+						+ " 8 characters,"
+						+ " 1 digit, "
+						+ " 1 of these symbols @#$%^&+=");
+				return "/user/add";
+			}
+			
 			BCryptPasswordEncoder encoder = new BCryptPasswordEncoder();
 			user.setPassword(encoder.encode(user.getPassword()));
 			userRepository.save(user);
@@ -44,6 +62,19 @@ public class UserService {
 	public String updateUser(@PathVariable("id") Integer id, @Valid User user, BindingResult result, Model model) {
 		if (result.hasErrors()) {
 			return "user/update";
+		}
+		// au moins une lettre majuscule, au moins 8 caractères, au moins un chiffre et un symbole)
+		String regex = "^(?=.*[a-z])(?=.*[A-Z])(?=.*\\d)(?=.*[@#$%^&+=]).{8,}$";
+		Pattern pattern = Pattern.compile(regex);
+		Matcher matcher = pattern.matcher(user.getPassword());
+		
+		if (!matcher.matches()) {
+			result.rejectValue("password", null, "Must have at least: "
+					+ " 1 capital letter,"
+					+ " 8 characters,"
+					+ " 1 digit, "
+					+ " 1 of these symbols @#$%^&+=");
+			return "/user/update";
 		}
 
 		BCryptPasswordEncoder encoder = new BCryptPasswordEncoder();

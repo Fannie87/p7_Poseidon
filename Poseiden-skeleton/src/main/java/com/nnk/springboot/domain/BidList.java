@@ -5,17 +5,21 @@ import java.sql.Timestamp;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
-import javax.persistence.Table;
+import javax.validation.constraints.NotNull;
 
 @Entity
-@Table(name = "bidlist")
 public class BidList {
 	@Id
 	@GeneratedValue
 	private Integer bidListId;
 
+	@NotNull
 	private String account;
+	
+	@NotNull
 	private String type;
+	
+	@NotNull
 	private Double bidQuantity;
 	private Double askQuantity;
 	private Double bid;

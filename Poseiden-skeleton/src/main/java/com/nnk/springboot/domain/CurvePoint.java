@@ -5,17 +5,22 @@ import java.sql.Timestamp;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
-import javax.persistence.Table;
+import javax.validation.constraints.NotNull;
 
 @Entity
-@Table(name = "curvepoint")
 public class CurvePoint {
 	@Id
 	@GeneratedValue
 	private Integer id;
+	
+	@NotNull
 	private Integer curveId;
 	private Timestamp asOfDate;
+	
+	@NotNull
 	private Double term;
+	
+	@NotNull
 	private Double value;
 	private Timestamp creationDate;
 

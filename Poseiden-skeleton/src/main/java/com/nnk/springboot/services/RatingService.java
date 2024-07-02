@@ -47,7 +47,7 @@ public class RatingService {
 	}
 
 	public String showUpdateForm(@PathVariable("id") Integer id, Model model) {
-		Rating rating = ratingRepository.getOne(id);
+		Rating rating = ratingRepository.getReferenceById(id);
 		model.addAttribute("rating", rating);
 		return "rating/update";
 	}

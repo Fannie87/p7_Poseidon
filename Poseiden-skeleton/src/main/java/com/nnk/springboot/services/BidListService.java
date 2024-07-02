@@ -43,7 +43,7 @@ public class BidListService {
 	}
 
 	public String showUpdateForm(@PathVariable("id") Integer id, Model model) {
-		BidList bidList = bidListRepository.getOne(id);
+		BidList bidList = bidListRepository.getReferenceById(id);
 		model.addAttribute("bidList", bidList);
 		return "bidList/update";
 	}

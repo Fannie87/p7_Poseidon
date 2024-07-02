@@ -5,16 +5,21 @@ import java.sql.Timestamp;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
-import javax.persistence.Table;
+import javax.validation.constraints.NotNull;
 
 @Entity
-@Table(name = "trade")
 public class Trade {
 	@Id
 	@GeneratedValue
 	private Integer tradeId;
+	
+	@NotNull
 	private String account;
+	
+	@NotNull
 	private String type;
+	
+	@NotNull
 	private Double buyQuantity;
 	private Double sellQuantity;
 	private Double buyPrice;

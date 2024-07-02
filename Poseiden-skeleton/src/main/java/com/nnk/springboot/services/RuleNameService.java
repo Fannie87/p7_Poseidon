@@ -55,7 +55,7 @@ public class RuleNameService {
 
 	public String showUpdateForm(@PathVariable("id") Integer id, Model model) {
 
-		RuleName ruleName = ruleNameRepository.getOne(id);
+		RuleName ruleName = ruleNameRepository.getReferenceById(id);
 		model.addAttribute("ruleName", ruleName);
 		return "ruleName/update";
 	}

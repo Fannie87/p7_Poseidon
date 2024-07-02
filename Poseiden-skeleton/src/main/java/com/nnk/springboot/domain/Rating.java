@@ -3,17 +3,24 @@ package com.nnk.springboot.domain;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
-import javax.persistence.Table;
+import javax.validation.constraints.NotNull;
 
 @Entity
-@Table(name = "rating")
 public class Rating {
 	@Id
 	@GeneratedValue
 	private Integer id;
+	
+	@NotNull
 	private String moodysRating;
+	
+	@NotNull
 	private String sandPRating;
+	
+	@NotNull
 	private String fitchRating;
+	
+	@NotNull
 	private Integer orderNumber;
 
 	public Rating() {

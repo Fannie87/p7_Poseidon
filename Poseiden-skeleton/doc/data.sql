@@ -1,5 +1,5 @@
-
-CREATE TABLE BidList (
+drop table if exists bid_list;
+CREATE TABLE bid_list (
   BidListId tinyint(4) NOT NULL AUTO_INCREMENT,
   account VARCHAR(30) NOT NULL,
   type VARCHAR(30) NOT NULL,
@@ -24,9 +24,10 @@ CREATE TABLE BidList (
   side VARCHAR(125),
 
   PRIMARY KEY (BidListId)
-)
+);
 
-CREATE TABLE Trade (
+drop table if exists trade;
+CREATE TABLE trade (
   TradeId tinyint(4) NOT NULL AUTO_INCREMENT,
   account VARCHAR(30) NOT NULL,
   type VARCHAR(30) NOT NULL,
@@ -50,9 +51,10 @@ CREATE TABLE Trade (
   side VARCHAR(125),
 
   PRIMARY KEY (TradeId)
-)
+);
 
-CREATE TABLE CurvePoint (
+drop table if exists curve_point;
+CREATE TABLE curve_point (
   Id tinyint(4) NOT NULL AUTO_INCREMENT,
   CurveId tinyint,
   asOfDate TIMESTAMP,
@@ -61,9 +63,10 @@ CREATE TABLE CurvePoint (
   creationDate TIMESTAMP ,
 
   PRIMARY KEY (Id)
-)
+);
 
-CREATE TABLE Rating (
+drop table if exists rating;
+CREATE TABLE rating (
   Id tinyint(4) NOT NULL AUTO_INCREMENT,
   moodysRating VARCHAR(125),
   sandPRating VARCHAR(125),
@@ -71,9 +74,10 @@ CREATE TABLE Rating (
   orderNumber tinyint,
 
   PRIMARY KEY (Id)
-)
+);
 
-CREATE TABLE RuleName (
+drop table if exists rule_name;
+CREATE TABLE rule_name (
   Id tinyint(4) NOT NULL AUTO_INCREMENT,
   name VARCHAR(125),
   description VARCHAR(125),
@@ -83,9 +87,10 @@ CREATE TABLE RuleName (
   sqlPart VARCHAR(125),
 
   PRIMARY KEY (Id)
-)
+);
 
-CREATE TABLE Users (
+drop table if exists users;
+CREATE TABLE users (
   Id tinyint(4) NOT NULL AUTO_INCREMENT,
   username VARCHAR(125),
   password VARCHAR(125),
@@ -93,7 +98,7 @@ CREATE TABLE Users (
   role VARCHAR(125),
 
   PRIMARY KEY (Id)
-)
+);
 
-insert into Users(fullname, username, password, role) values("Administrator", "admin", "$2a$10$UlcP5RSaYWEg2otN1H7SZuGCm2AmWk/inOGbvT9fgQu6NQlO4wfki", "ADMIN")
-insert into Users(fullname, username, password, role) values("User", "user", "$2a$10$UlcP5RSaYWEg2otN1H7SZuGCm2AmWk/inOGbvT9fgQu6NQlO4wfki", "USER")
+insert into users(fullname, username, password, role) values("Administrator", "admin", "$2a$10$UlcP5RSaYWEg2otN1H7SZuGCm2AmWk/inOGbvT9fgQu6NQlO4wfki", "ADMIN");
+insert into users(fullname, username, password, role) values("User", "user", "$2a$10$UlcP5RSaYWEg2otN1H7SZuGCm2AmWk/inOGbvT9fgQu6NQlO4wfki", "USER");
